@@ -1,32 +1,25 @@
-# html5-snake
+## Snake+
 
-Okay, so I'm up to 2 games in my repertoire. 
+This is a copy of JDStraughan's [htm5-snake](https://github.com/JDStraughan/html5-snake) with extra features not found in real snake, such as a (basic) AI snake that often kills itself, and two (and hopefully more eventually) food pellets at once. 
 
-The last game, [lightcycles](https://github.com/JDStraughan/html5-lightcycles), was a great learning experience, and I tried to apply some of the lessons learned there to this game.
+## Install/Play the Game
 
-## Installation
+Just download game.html and open it in any modern browser (must support HTML5).
+I'm planning on setting up a GitHub Page soon to play easier.
 
-It's just HTML, CSS, and javascript.  Open it in a modern browser and have fun.
+## How to Contribute
 
-Too lazy to download?  [Play it on jsfiddle (may be older version of game)](http://jsfiddle.net/zT7V4/1/).
+Fork this, change stuff, and add a pull request, and I'll hopefully remeber to merge things :)
 
-## Inspiration
+## List of Contributors
 
-[lightcycles](https://github.com/JDStraughan/html5-lightcycles) was a blast to write, and it really made me think about how to make my snake move (hehe).  I decided on making and array, and just shift()ing and push()ing segments.  This is what I ended up with.
-
-## Contributing
-
-You can fork/fix/add/pull request this repo, and I'll gladly add your code ;)
-
-## Contributors
-
-If you issue a pull request, add your name here!
+If you modify the code and make a pull request, add your name here to be recognized!
 
 ## License
 
 MIT License - http://opensource.org/licenses/MIT
 
-Copyright (c) 2013 Jason D. Straughan
+Copyright (c) 2017 PorygonZRocks
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
