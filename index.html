@@ -1,2 +1,12 @@
 <noscript>Your browser does not support JavaScript (or it is disabled). Sorry :(</noscript>
-<script>window.location.replace("game")</script>
+<script>
+  var xhr = new XMLHttpRequest()
+  xhr.open('GET', "blank.xhtml", false)
+  xhr.send(null)
+  if (xhr.getResponseHeader("content-type") == "application/xhtml+xml") {
+   window.location.replace("game.xhtml") 
+  }
+  else {
+    window.location.replace("game.html")
+  }
+</script>
