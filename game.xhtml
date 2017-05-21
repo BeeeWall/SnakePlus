@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8" />
-<title>HTML5 snake - Canvas Snake Game</title>
-<!--[if IE]>
+<title>Snake+</title>
+<!--[if lte IE 8]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <style type="text/css">
+/*<![CDATA[*/
   article, aside, details, figcaption, figure, footer, header,
-hgroup, menu, nav, section { 
-  display: block; 
+hgroup, menu, nav, section {
+  display: block;
 }
+
 html {
   background-color: #CCC;
 }
@@ -23,10 +25,12 @@ p {
 canvas {
   display: block;
   margin: 0 auto;
+  top:5px;
   right: 5px;
   position: fixed;
   background-color: #666;
 }
+/*]]>*/
  </style>
 </head>
 <body>
@@ -38,12 +42,12 @@ canvas {
 
 <p>Collect the food to grow and increase speed.</p>
 <div>
-  <canvas id="the-game" width="320" height="240">
+  <canvas id="the-game" width="320" height="240"></canvas>
 </div>
-
-
-<p>&#169; 2013 <a href="http://JDStraughan.com">Jason D. Straughan</a> - <a href="https://github.com/JDStraughan/html5-snake">Source on GitHub</a></p>  
-<script type="text/javascript">/* jshint -W079 */
+<p>&#169; 2013 <a href="http://JDStraughan.com">Jason D. Straughan</a> - <a href="https://github.com/JDStraughan/html5-snake">Source on GitHub</a></p>
+<script type="text/javascript">
+/*<![CDATA[*/
+/* jshint -W079 */
 /* ^ tells jshint to ignore 'Redifinition of RO variable' error when checking code or line 240 throws a (nonfatal) error */
 
 /* set up of game canvas' along with the expected game style (2D) and resisze canvas to fit screen
@@ -64,17 +68,17 @@ game = {
   score: 0,
   fps: 8,
   over: false,
-  message: null, 
+  message: null,
   
   
   /* variables are adjusted to represent the beginnning of a new game */
   start: function() { /* starting a new game */
     game.over = false;  /* game state has been changed to in progress */
     game.message = null; /* no message displayed to user */
-    game.score = 0;       
+    game.score = 0;
     game.fps = 8;
-    snake.init(); 
-    food.set(); 
+    snake.init();
+    food.set();
   },
   
 
@@ -90,7 +94,7 @@ game = {
      color: fill color of the game board */
   drawBox: function(x, y, size, color) {
     context.fillStyle = color;
-    context.beginPath(); 
+    context.beginPath();
     context.moveTo(x - (size / 2), y - (size / 2)); /* begins fill path at bottom left from centre point */
     context.lineTo(x + (size / 2), y - (size / 2)); /* line from bottom left to bottom right */
     context.lineTo(x + (size / 2), y + (size / 2)); /* line from bottom right to top right */
@@ -99,14 +103,14 @@ game = {
     context.fill(); /* area created by these lines are now filled with a solid color */
   },
   
-  /* creates textfield for the scoreboard 
+  /* creates textfield for the scoreboard
      fill color of scoreboard and font of scoreboard are chosen
      scoreboard text is aligned
      scoreboard textfield filled with score and textfield dimensions are set */
   drawScore: function() {
-    context.fillStyle = '#999'; 
-    context.font = (canvas.height) + 'px Impact, sans-serif'; 
-    context.textAlign = 'center'; 
+    context.fillStyle = '#999';
+    context.font = (canvas.height) + 'px Impact, sans-serif';
+    context.textAlign = 'center';
     context.fillText(game.score, canvas.width / 2, canvas.height * 0.9);
   },
   
@@ -150,7 +154,7 @@ snake = {
     snake.x = canvas.width / 2 + snake.size / 2; /* starting xcoordinate for the snake */
     snake.y = canvas.height / 2 + snake.size / 2; /* starting ycoordinate for the snake */
     for (var i = snake.x + (5 * snake.size); i >= snake.x; i -= snake.size) { /* array tracks segements of snake via turn points */
-      snake.sections.push(i + ',' + snake.y); 
+      snake.sections.push(i + ',' + snake.y);
     }
   },
   
@@ -179,7 +183,7 @@ snake = {
   draw: function() {
     for (var i = 0; i < snake.sections.length; i++) {
       snake.drawSection(snake.sections[i].split(',')); /* concatenation of snake sections are drawn around current turn points */
-    }    
+    }
   },
   
   /* section: an individual section of the snake */
@@ -210,7 +214,7 @@ snake = {
   checkGrowth: function() {
     if (snake.x == food.x && snake.y == food.y) { /* if the snake head collides with a food */
       game.score++; /* add to score */
-      if (game.score % 5 === 0 && game.fps < 60) { 
+      if (game.score % 5 === 0 && game.fps < 60) {
         game.fps++; /* increase the fps when game score increases by 5 points */
       }
       food.set(); /* set another food on the game board */
@@ -307,6 +311,7 @@ function loop() {
 }
 
 requestAnimationFrame(loop);
+/*]]>*/
 </script>
 </body>
 </html>
