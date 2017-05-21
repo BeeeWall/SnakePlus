@@ -1,3 +1,5 @@
+##(IN DEVELOPMENT, CURRENTLY JUST A COPY)
+
 ## Snake+
 
 This is a copy of JDStraughan's [htm5-snake](https://github.com/JDStraughan/html5-snake) with extra features not found in real snake, such as a (basic) AI snake that often kills itself, and two (and hopefully more eventually) food pellets at once. 
