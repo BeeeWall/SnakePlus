@@ -178,8 +178,9 @@
 			},
 			/* collision detection */
 			checkCollision: function () {
-				if (snakeIsCollision(player, player.x, player.y) === true) { /* if the head of the player collides with something */
+				if (snakeIsCollision(player, player.x, player.y) === true || snakeIsCollision(ai, player.x, player.y) === true) { /* if the head of the player collides with something */
 					game.stop(); /* game state is changed to over */
+					snakeInit(player);
 				}
 			},
 		};
@@ -188,7 +189,7 @@
 			/* variables are initialized to represent a new player */
 			size: canvas.width / 40,
 			color: '#F0F',
-			direction: 'left',
+			direction: 'down',
 			sections: [],
 			/* section: an individual section of the player */
 			drawSection: function (section) {
@@ -196,8 +197,8 @@
 			},
 			/* collision detection */
 			checkCollision: function () {
-				if (snakeIsCollision(ai, ai.x, ai.y) === true) { /* if the head of the player collides with something */
-					game.stop(); /* game state is changed to over */
+				if (snakeIsCollision(ai, ai.x, ai.y) === true || snakeIsCollision(player, ai.x, ai.y) === true) { /* if the head of the player collides with something */
+					snakeInit(ai); /* game state is changed to over */
 				}
 			},
 		};
@@ -206,19 +207,19 @@
 			switch (snake.direction) {
 			case 'up':
 				/* when the up arrow key is pressed */
-				snake.y -= snake.size; /* moves player in upward direction based on current size */
+				snake.y -= foodSize; /* moves snake in upward direction based on current size */
 				break;
 			case 'down':
 				/* when the down arrow key is pressed */
-				snake.y += snake.size; /* moves player in downward direction based on current size */
+				snake.y += foodSize; /* moves snake in downward direction based on current size */
 				break;
 			case 'left':
 				/* when the left arrow key is pressed */
-				snake.x -= snake.size; /* moves player in leftward direction based on current size */
+				snake.x -= foodSize; /* moves snake in leftward direction based on current size */
 				break;
 			case 'right':
 				/* when the right arrow key is pressed */
-				snake.x += snake.size; /* moves player in rightward direction based on current size */
+				snake.x += foodSize; /* moves snake in rightward direction based on current size */
 				break;
 			}
 			snake.checkCollision(); /* collision detection */
@@ -234,12 +235,15 @@
 		/* snake intitial values */
 		function snakeInit(snake) {
 			snake.sections = []; /* array holds segements of the player */
-			snake.direction = 'left'; /* starting direction initialized to left */
+			snake.size = canvas.width / 40;
 			snake.x = canvas.width / 2; /* starting xcoordinate for the player */
 			snake.y = canvas.height / 2; /* starting ycoordinate for the player */
 			for (var i = snake.x + (5 * snake.size); i >= snake.x; i -= snake.size) { /* array tracks segements of player via turn points */
 				snake.sections.push(i + ',' + snake.y);
 			}
+			snakeMove(snake);
+			snakeMove(snake);
+			snakeMove(snake);
 		};
       /* collision checks */
 		function snakeIsCollision(snake, x, y) {
@@ -272,26 +276,27 @@
         return 0
       };
     };
+    function roundNum(num) {
+        return Math.round(num / food.size) * food.size;
+    };
 		/* food collection, sees if the player has collided with food */
     function checkGrowth(snake) {
 			if (checkFood(snake) > 0) { /* if the player head collides with a food */
+				foodSet(checkX(snake)); /* set another food on the game board */
 				game.score++; /* add to score */
+				snake.size+=foodSize /* widen snake */
+				roundNum(snake.x);
+				roundNum(snake.y);
 				if (game.score % 5 === 0 && game.fps < 60) {
 					game.fps++; /* increase the fps when game score increases by 5 points */
 				}
-				foodSet(checkX(snake)); /* set another food on the game board */
 			}
 			else {
 				snake.sections.shift();
 			}
 		};
-		/* food1 properties */
-		food1 = {};
-		/* food2 properties */
-		food2 = {};
-		/* food3 properties */
-		food3 = {};
-		/* Test */
+		/* food */
+		var foodSize = ai.size;
   	var x = 1
     var y = 2
     var food = [
@@ -308,7 +313,7 @@
 			while (player.sections.indexOf(food[num][x] + ',' + food[num][y]) >= 0) {
 			  foodSet(num);
 			}
-			game.drawBox(food[num][x], food[num][y], player.size, color);
+			game.drawBox(food[num][x], food[num][y], foodSize, color);
 		};
 		/* sets values to change directional key commands */
 		var inverseDirection = {
@@ -359,6 +364,10 @@
 				context.canvas.width = Math.floor(context.canvas.height * (4 / 3));
 				game.resetCanvas();
 				game.drawScore();
+				roundNum(player.x);
+				roundNum(player.y);
+				roundNum(ai.x);
+				roundNum(ai.y);
 				snakeMove(player);
 				snakeMove(ai);
 				foodDraw('#0FF', 1);
