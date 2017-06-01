@@ -1,6 +1,21 @@
-<iframe src="test.xhtml">
-</iframe>
-<noscript>Your browser does not support JavaScript (or it is disabled). Sorry :(</noscript>
-<script>
-  window.location.replace("game.html")
-</script>
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <script>
+    window.setTimeout(function() {
+      window.location.replace("snake.html")
+    }, 500);
+  </script>
+  </head>
+  
+  <body>
+  <noscript>Your browser does not support JavaScript (or it is disabled, or it's loading). Sorry :(</noscript>
+  <p id="loading"></p>
+  <script>
+    document.getElementById("loading").innerHTML = "Redirecting... Thank you for being patient.";
+  </script>
+  <iframe src="test.xhtml" style="width:0; height:0; border:0; border:none; visibility:hidden;"></iframe>
+  </body>
+  
+</html>
