@@ -1,8 +1,8 @@
-## (IN DEVELOPMENT, CURRENTLY JUST A COPY)
+## (IN DEVELOPMENT, CURRENTLY VERY UNSTABLE)
 
 ## Snake+
 
-This is a copy of JDStraughan's [htm5-snake](https://github.com/JDStraughan/html5-snake) with extra features not found in real snake, such as a (basic) AI snake that often kills itself, and two (and hopefully more eventually) food pellets at once. 
+This is a fork of JDStraughan's [htm5-snake](https://github.com/JDStraughan/html5-snake) with extra features not found in real snake, such as a (basic) AI snake that often kills itself, and two (and hopefully more eventually) food pellets at once. 
 
 ## Install/Play the Game
 
